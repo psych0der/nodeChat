@@ -1,0 +1,24 @@
+{{> header}}
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/handle-chat.js"></script>
+
+<div class="container">
+
+<h1>
+node chat test
+</h1>
+
+<input type="text" id="pinput"/>
+<button id="pset">Psuedo Set</button>
+
+<div id="chatEntries">
+	<div id="chatControls">	
+        <input type="text" id="messageInput"/>
+        <button id="submit"> Send </button>
+    </div>
+</div>
+
+
+</div>
+{{>footer}}

@@ -1,0 +1,13 @@
+{
+    "name": "Webchat",
+    "version": "0.0.1",
+    "description": "Real time web chat",
+    "dependencies": {
+        "socket.io": "latest",
+        "express": "latest",
+        "consolidate" : "latest",
+        "mustache" : "latest",
+        "hogan-express" : "latest"
+    },
+    "author": "psych0der"
+}
