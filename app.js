@@ -1,7 +1,5 @@
 
-/**
- * Module dependencies.
- */
+/*  Module dependencies. */
 
 var express = require('express');
 var hoganex = require('hogan-express');
@@ -12,10 +10,19 @@ var http = require('http');
 var path = require('path');
 
 var app = express()
- , server = require('http').createServer(app)
-  , io = require('socket.io').listen(server);
+ ,server = require('http').createServer(app)
+ ,io = require('socket.io').listen(server);
 
 
+/*  local Variables  */
+
+var users = {};  // list of online
+
+
+
+
+
+/* app config */
 
 // all environments
 app.set('port',process.env.PORT || 3000);
@@ -38,27 +45,49 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+app.get('/', routes.index);
 
-/* socket.io */
+
+
+
+
+/* Socket communiction handling */
 
 io.sockets.on('connection', function (socket) {
-	socket.on('setPseudo', function (data) {
-		socket.set('pseudo', data);
+	
+	socket.on('addUser', function (name) {
+		socket.set('username', name);
+		users[name]= name;
+		socket.broadcast.emit('updateUsers',users);
+		socket.emit('updateUsers',users);
 	});
+	
 	socket.on('message', function (message) {
-		socket.get('pseudo', function (error, name) {
-			var data = { 'message' : message, pseudo : name };
+		socket.get('username', function (error, name) {
+			var data = { 'message' : message, 'user' :name};
 			socket.broadcast.emit('message', data);
 			console.log("user " + name + " send this : " + message);
 		})
 	});
+
+	socket.on('endSession' , function(){
+		
+		socket.get('username',function(err,name){
+
+			delete users[name];
+			socket.broadcast.emit('updateUsers',users);
+		});
+		
+
+	});
+
+
 });
 
-/* socket io end */
 
 
 
-app.get('/', routes.index);
+
 
 
 server.listen(app.get('port'), function(){

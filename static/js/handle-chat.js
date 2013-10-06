@@ -10,21 +10,40 @@ function sendMessage() {
 		$('#messageInput').val('');
 	}
 }
-function setPseudo() {
-	if ($("#pinput").val() != "")
+function setNick() {
+	if ($("#nick").val() != "")
 	{
-		socket.emit('setPseudo', $("#pinput").val());
+		socket.emit('addUser', $("#nick").val());
 		$('#chatControls').show();
-		$('#pinput').hide();
-		$('#pset').hide();
+		$('#nick').hide();
+		$('#set-nick').hide();
 	}
 }
 socket.on('message', function(data) {
-	addMessage(data['message'], data['pseudo']);
+	addMessage(data['message'], data['user']);
+});
+
+function disconnect() {
+
+	socket.emit('endSession');
+	window.location = '/';
+}
+
+socket.on('updateUsers' , function(data) {
+
+	$('#users').empty();
+
+		for(user in data)
+		{
+
+		$('#users').append('<li>'+user+'</li>');
+		}
+
 });
 
 $(function() {
 	$("#chatControls").hide();
-	$("#pset").click(function() {setPseudo()});
+	$("#set-nick").click(function() {setNick()});
 	$("#submit").click(function() {sendMessage();});
+	$("#exit").click(function(){ disconnect();});
 });
