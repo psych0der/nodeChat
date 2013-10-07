@@ -11,13 +11,15 @@ var path = require('path');
 
 var app = express()
  ,server = require('http').createServer(app)
- ,io = require('socket.io').listen(server);
+ ,io = require('socket.io').listen(server)
+ ,connect = require('connect')
+ ,cookie = require('cookie') ;
 
 
 //var uuid = require('node-uuid');
 
 
-var store  = new express.session.MemoryStore;
+var store  = new express.session.MemoryStore();
 
 
 /*  local Variables  */
@@ -40,7 +42,7 @@ app.set('view engine', 'html');
 app.engine('html', hoganex);
 
 app.use(express.cookieParser());
-app.use(express.session({secret: 'Th1s1srand0mk3y$0rS3ss310n' , store : store}));
+app.use(express.session({secret: 'Th1s1srand0mk3y$0rS3ss310n' , key: 'mycustomkey', store : store}));
 
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
@@ -67,7 +69,45 @@ app.post('/login',routes.login);
 
 /* Socket communiction handling */
 
+
+io.set('authorization', function (data, accept) {
+    if (data.headers.cookie) {
+        
+         data.cookie = cookie.parse(data.headers.cookie,'');
+        data.sessionID = data.cookie['mycustomkey'].split(':')[1].split('.')[0];//.split('.')[0];
+        console.log(data.sessionID);
+        //console.log(store);
+        store.get(data.sessionID, function (err, session) {
+            if (err || !session) {
+                // if we cannot grab a session, turn down the connection
+                accept('Errorssss', false);
+            } else {
+                // save the session data and accept the connection
+                console.log('success');
+                data.session = session;
+               // console.log(data.session);
+                accept(null, true);
+            }
+        });
+    } else {
+       return accept('No cookie transmitted.', false);
+    }
+});
+
+
+
 io.sockets.on('connection', function (socket) {
+/*
+	var cookie_string = socket.headers.cookie;
+ 	var parsed_cookies = express.cookieParser(cookie_string);
+ 	var connect_sid = parsed_cookies['connect.sid'];
+  	if (connect_sid) {
+    	session_store.get(connect_sid, function (error, session) {
+      	console.log(session.nick);
+    	});
+  	}
+*/
+	console.log(socket.handshake.session.nick);
 	
 	socket.on('addUser', function (name) {
 		socket.set('username', name);

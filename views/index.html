@@ -1,39 +1,55 @@
 {{> header}}
 
 <script src="/socket.io/socket.io.js"></script>
-<script src="js/handle-chat.js"></script>
+<script src="js/multi-chat.js"></script>
 
+<div class="row main">
+  
+  <div class="col-xs-6 col-sm-6 col-md-2 sidebar full-height">
+
+  <a href="#">Messages <span id="notification" class="badge">42</span></a>
+  	
+
+
+  </div>
+
+<div class="col-xs-12 col-sm-6 col-md-10">
+  	
 <div class="container">
 
-<h1>
-node chat test
-</h1>
-</br></br>
-welcome {{nick}}
-</br>
-<input type="text" id="nick"/>
-<button id="set-nick">Set nick</button>
 
-<div id="chatEntries">
-	<div id="chatControls">	
-        <input type="text" id="messageInput"/>
-        <button id="submit"> Send </button>
-    </div>
+<div class="row">
+<div class="col-md-8">
+
+<p class="lead title text-danger">WebChat</p>
+
 </div>
 
+<div class="col-xs-6 col-sm-6 col-md-4 nick">
+<span class="pull-right">welcome <span class="text-primary"><i>{{nick}}</i></span></span>
+</div>  	
+</div>
+
+<div class="col-md-10">
 <div class="online-users">
-<h3> online users </h3>
-</br>
+<p class="user-list-title"> Online users </p>
 
-<ul id="users">
+<ul id="users" class="list-unstyled users-list">
+
 </ul>
+<input type="text" class="chat form-control" id="chat" placeholder="enter you text">
+</div>
 
-</br>
-<hr>
-<button id="exit">Exit</button>
+</div>
 
 </div>
 
 
+
+
+  </div>
+  
 </div>
+
+
 {{>footer}}

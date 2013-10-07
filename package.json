@@ -5,11 +5,13 @@
     "dependencies": {
         "socket.io": "latest",
         "express": "latest",
+        "connect" :"latest",
         "consolidate" : "latest",
         "mustache" : "latest",
         "hogan-express" : "latest",
         "mongojs" : "latest",
-        "node-uuid" : "latest"
+        "node-uuid" : "latest",
+        "cookie" : "latest"
     },
     "author": "psych0der"
 }
