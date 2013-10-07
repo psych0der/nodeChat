@@ -59,6 +59,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/register',routes.registerForm);
 app.get('/login',routes.loginForm);
+app.get('/logout',routes.logout);
 
 app.post('/register',routes.register);
 app.post('/login',routes.login);
@@ -75,17 +76,15 @@ io.set('authorization', function (data, accept) {
         
          data.cookie = cookie.parse(data.headers.cookie,'');
         data.sessionID = data.cookie['mycustomkey'].split(':')[1].split('.')[0];//.split('.')[0];
-        console.log(data.sessionID);
+        //console.log(data.sessionID);
         //console.log(store);
         store.get(data.sessionID, function (err, session) {
             if (err || !session) {
                 // if we cannot grab a session, turn down the connection
                 accept('Errorssss', false);
             } else {
-                // save the session data and accept the connection
-                console.log('success');
+               
                 data.session = session;
-               // console.log(data.session);
                 accept(null, true);
             }
         });
@@ -97,23 +96,18 @@ io.set('authorization', function (data, accept) {
 
 
 io.sockets.on('connection', function (socket) {
-/*
-	var cookie_string = socket.headers.cookie;
- 	var parsed_cookies = express.cookieParser(cookie_string);
- 	var connect_sid = parsed_cookies['connect.sid'];
-  	if (connect_sid) {
-    	session_store.get(connect_sid, function (error, session) {
-      	console.log(session.nick);
-    	});
-  	}
-*/
-	console.log(socket.handshake.session.nick);
+
+	//console.log(store);
 	
-	socket.on('addUser', function (name) {
-		socket.set('username', name);
-		users[name]= name;
-		socket.broadcast.emit('updateUsers',users);
-		socket.emit('updateUsers',users);
+		socket.on('addUser', function (name) {
+			socket.emit('other-users',users);
+
+		if( typeof users[socket.handshake.session.nick] == 'undefined')
+		{
+			users[socket.handshake.session.nick]= socket.id;
+			socket.broadcast.emit('new-user',socket.handshake.session.nick);
+		}
+		
 	});
 	
 	socket.on('message', function (message) {
@@ -131,6 +125,14 @@ io.sockets.on('connection', function (socket) {
 			delete users[name];
 			socket.broadcast.emit('updateUsers',users);
 		});
+
+
+	socket.on('disconnect',function(err,name){
+		console.log('disconnected');
+		socket.broadcast.emit('remove-user',socket.handshake.session.nick);
+		delete users[socket.handshake.session.nick];
+
+	});
 		
 
 	});

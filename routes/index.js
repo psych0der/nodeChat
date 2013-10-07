@@ -10,6 +10,7 @@ var db = require('../lib/db.js');
 
 exports.index = function(req, res){
 
+	
 	if(!req.session.loggedIn)
 	{
 		res.redirect('/login');
@@ -34,6 +35,7 @@ else {
 
 exports.registerForm = function(req,res) {
 
+	
 	res.render('register', 
 		{
 			partials : 
@@ -45,9 +47,20 @@ exports.registerForm = function(req,res) {
 		});
 }
 
+exports.logout = function(req,res) {
+
+	
+	
+	req.session = null;
+	//req.session.destroy(function() {});
+	res.clearCookie('mycustomkey');
+  	res.redirect('/');
+}
+
 
 exports.loginForm = function(req,res) {
 
+	
 	res.render('login', 
 		{
 			partials : 
@@ -62,6 +75,7 @@ exports.loginForm = function(req,res) {
 
 exports.register = function(req,res) {
 
+	
 	var pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/; 
 
 		var nick = req.body.nick;
@@ -183,6 +197,7 @@ exports.register = function(req,res) {
 exports.login = function(req,res)
 {
 
+	
 	if(!req.session.loggedIn)
 	{
 

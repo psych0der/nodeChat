@@ -1,5 +1,29 @@
-var socket = io.connect();
+var socket = io.connect(window.location.origin,{
+ 'sync disconnect on unload': true
+});
 socket.emit('addUser','');
+
+socket.on('new-user',function(nick){
+
+$('#users').append('<li id="'+nick+'" class="user"><input type="checkbox" value="'+nick+'" class="user-add">&nbsp;&nbsp;'+nick+'</li>');
+
+});
+
+socket.on('other-users',function(userList){
+
+	for(nick in userList)
+	{
+		$('#users').append('<li id="'+nick+'" class="user"><input type="checkbox" value="'+nick+'" class="user-add">&nbsp;&nbsp;'+nick+'</li>');
+
+	}
+
+});
+
+socket.on('remove-user',function(nick){
+	alert('called');
+$('#'+nick).remove();
+
+});
 
 /*
 function addMessage(msg, pseudo) {
