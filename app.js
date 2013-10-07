@@ -6,12 +6,18 @@ var hoganex = require('hogan-express');
 
 
 var routes = require('./routes');
-var http = require('http');
+
 var path = require('path');
 
 var app = express()
  ,server = require('http').createServer(app)
  ,io = require('socket.io').listen(server);
+
+
+//var uuid = require('node-uuid');
+
+
+var store  = new express.session.MemoryStore;
 
 
 /*  local Variables  */
@@ -33,6 +39,9 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'html');
 app.engine('html', hoganex);
 
+app.use(express.cookieParser());
+app.use(express.session({secret: 'Th1s1srand0mk3y$0rS3ss310n' , store : store}));
+
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
@@ -46,6 +55,11 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.get('/register',routes.registerForm);
+app.get('/login',routes.loginForm);
+
+app.post('/register',routes.register);
+app.post('/login',routes.login);
 
 
 

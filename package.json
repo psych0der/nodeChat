@@ -7,7 +7,9 @@
         "express": "latest",
         "consolidate" : "latest",
         "mustache" : "latest",
-        "hogan-express" : "latest"
+        "hogan-express" : "latest",
+        "mongojs" : "latest",
+        "node-uuid" : "latest"
     },
     "author": "psych0der"
 }
