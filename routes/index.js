@@ -112,6 +112,23 @@ if(names[obj.from]== undefined)
 }
 
 
+exports.threads = function(req,res) {
+
+nick = req.session.nick;
+from = req.params.from;
+
+db.chats.find({$or :[{from : from , to : nick},{from: nick , to: from}]}).sort({time:-1},function(err,docs){
+
+console.log(docs);
+
+
+
+});
+
+
+
+}
+
 
 exports.register = function(req,res) {
 

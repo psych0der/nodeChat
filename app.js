@@ -62,6 +62,8 @@ app.get('/login',routes.loginForm);
 app.get('/logout',routes.logout);
 app.get('/messages',routes.messages);
 
+app.get('/threads/:from',routes.threads);
+
 app.post('/register',routes.register);
 app.post('/login',routes.login);
 
