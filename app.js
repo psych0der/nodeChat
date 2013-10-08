@@ -141,6 +141,34 @@ io.sockets.on('connection', function (socket) {
 
 
 	});
+	socket.on('fetch history', function(){
+
+		
+		db.chats.find({to: socket.handshake.session.nick , seen : false},function(err,docs){
+
+
+			socket.emit('history', docs);
+
+			//console.log('results '+JSON.stringify(docs));
+
+		});/*.forEach(function(err,doc){
+
+			if(!doc)
+			{
+				return;
+			}
+
+			console.log(history.push(doc));
+			//console.log(doc);
+			return history;
+
+		});
+	*/
+		//console.log('history : '+history);
+		//console.log('results '+JSON.stringify(results));
+		//socket.emit('history', {history:history});
+
+	});
 
 	socket.on('disconnect',function(){
 		console.log('disconnected');

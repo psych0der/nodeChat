@@ -18,6 +18,7 @@ var queue = {};
 var notifications = 0;
 
 socket.emit('addUser','');
+socket.emit('fetch history');
 
 socket.on('new-user',function(nick){
 
@@ -35,6 +36,26 @@ socket.on('other-users',function(userList){
 
 	}
 
+});
+
+socket.on('history', function(history)
+{
+	
+
+	history.forEach(function(doc){
+
+	if(queue[doc.from]== undefined)
+	{
+	console.log('received');
+	notifications+=1;
+	$('#notification').text(String(notifications));
+	queue[doc.from] = 1;
+
+	}
+
+	});
+	
+	
 });
 
 socket.on('message', function(packet)
