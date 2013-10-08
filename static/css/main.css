@@ -66,14 +66,15 @@
 	margin-top:5px;
 	height:70%;
 	overflow: auto;
-	border: thin solid #ccc;
+	/*border: thin solid #ccc;*/
 }
 
 .threads li {
 	height:60px; 
-	border-bottom: thin solid #aaa;
+	border: thin solid #aaa;
 	padding:10px;
-	margin-bottom: 1px: 
+	margin-bottom: 5px; 
+	width:300px;
 }
 
 .threads li a , .threads li{
@@ -111,8 +112,9 @@
 	height:30px;
 	border-radius : 25px;
 	padding:5px;
-	background-color:#ccc;
+	background-color:#c64e47;
 	margin-bottom:7px;
+	color:#fff;
 	padding-left:10px;
 	font-size:1.1em;
 	clear:both;
