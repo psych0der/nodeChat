@@ -133,8 +133,8 @@ io.sockets.on('connection', function (socket) {
 
 			if(users[to]!=undefined)
 			{
-				
-				io.sockets.socket(users[to]).emit('message',{from : to , message : packet.message ,date: Date.now()})
+
+				io.sockets.socket(users[to]).emit('message',{from : from , message : packet.message ,date: Date.now()})
 
 			}
 		}

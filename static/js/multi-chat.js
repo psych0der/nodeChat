@@ -39,15 +39,21 @@ socket.on('other-users',function(userList){
 
 socket.on('message', function(packet)
 {
+
+
 	if(queue[packet.from]== undefined)
 	{
+	//alert('lol');
 	notifications+=1;
 	$('#notification').text(String(notifications));
 	queue[packet.from] = 1;
 
 	}
+	else
+	{
+		//alert('double lol');
+	}
 	
-
 });
 
 socket.on('remove-user',function(nick){
