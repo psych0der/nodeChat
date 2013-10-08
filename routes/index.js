@@ -84,19 +84,34 @@ else
 var nick = req.session.nick;
 var threads; 
 
-db.chats.find({to : nick},{from:1},function(err,docs){
-
+db.chats.find({$or :[{from : nick},{to: nick}]},function(err,docs){
+console.log(docs);
 var names = {}
 var threads = [];
 
 docs.forEach(function(obj){
 
-if(names[obj.from]== undefined)
+if(obj.to == nick)
 {
+	if(names[obj.from]== undefined)
+	{
+	obj.display = obj.from;
 	threads.push(obj);
 	names[obj.from] = 1;
+
+	}
 }
 
+else{
+
+if(names[obj.to]== undefined)
+	{
+	obj.display = obj.to;	
+	threads.push(obj);
+	names[obj.to] = 1;
+	}
+
+}
 });
 
 	res.render('messages', 
@@ -130,7 +145,7 @@ else {
 nick = req.session.nick;
 from = req.params.from;
 
-db.chats.find({$or :[{from : from , to : nick},{from: nick , to: from}]}).sort({time:-1}).limit(10,function(err,docs){
+db.chats.find({$or :[{from : from , to : nick},{from: nick , to: from}]}).sort({time:-1},function(err,docs){
 
 docs.forEach(function(doc){
 
