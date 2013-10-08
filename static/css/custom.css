@@ -1,0 +1,663 @@
+html,
+body {
+  height: 100%;
+  /*background-color: #f2f1ed;*/
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+@font-face
+{
+font-family: geo;
+src: url(../fonts/GeosansLight.ttf);
+}
+
+@font-face
+{
+font-family: euro;
+src: url(../fonts/eurof35.ttf);
+}
+
+@font-face
+{
+    font-family: quick;
+    src : url(../fonts/QuicksandBook.otf);
+}
+
+@font-face
+{
+    font-family: beb;
+    src : url(../fonts/BebasNeue.otf);
+}
+
+@font-face
+{
+    font-family: fran;
+    src : url(../fonts/Franchise-Bold.ttf);
+}
+
+@font-face
+{
+    font-family: hnew;
+    src : url(../fonts/helvetica-neue-ce-35-thin-1361522164.ttf);
+}
+
+@font-face
+{
+    font-family: cd;
+    src : url(../fonts/CaviarDreams.ttf);
+}
+
+@font-face
+{
+    font-family: walk;
+    src : url(../fonts/Walkway_SemiBold.ttf);
+}
+
+@font-face
+{
+    font-family: mank;
+    src : url(../fonts/MankSans.ttf);
+}
+
+@font-face
+{
+    font-family: opens;
+    src : url(../fonts/OpenSans-Regular.ttf);
+}
+
+@font-face
+{
+    font-family: hneubold;
+    src : url(../fonts/hneubold.otf);
+}
+
+@font-face {
+    font-family: opensbold;
+    src : url(../fonts/OpenSans-Bold.ttf);
+}
+
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by it's height */
+    margin: 0 auto;
+
+}
+
+
+.head
+{
+    margin-bottom:20px;
+    margin-top:5px;
+    padding-bottom: 5px;
+}
+
+.borderd
+{
+    /*border-bottom: thin dashed #ddd;*/
+    margin-bottom: 4px;
+    padding: 15px;
+    padding-bottom: 10px;
+   
+}
+
+.title-heading {
+    font-family: euro;
+    font-size: 4.7em;
+    color:#000;
+   
+}
+
+.title-heading a {
+    color:#000;
+}
+
+.title-heading a:hover {
+    text-decoration:none;
+}
+
+.navbar 
+{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    display: inline;
+    margin-top: 45px;
+}
+
+.navbar , .navbar a
+{
+    font-family: geo;
+    color: black;
+    font-size:1.2em;
+}
+
+
+.navbar li
+{   display: inline;
+    margin-right: 35px;
+
+}
+.navbar a:hover {
+    color:#999999;
+    text-decoration: none;
+
+}
+
+.main-list{
+    text-align:center;
+    float:none;
+    clear:both;
+    font-size:1.9em;
+
+   
+   
+
+}
+
+/*
+.main-list-wrapper {
+     padding:20px;
+    border-bottom: thin dashed #ccc;
+}
+*/
+
+
+.main-list a {
+    color:#428bca;
+  font-size:2.0em;
+}
+
+.main-list a:hover {
+
+    color:#999999;
+    text-decoration: none;
+    padding-bottom:8px;
+    border-bottom: solid thin #5c8aca;
+
+}
+
+.highlight-link
+{   
+    color:#999999;
+    border-bottom: solid thin #5c8aca;
+    padding-bottom: 8px;
+    
+}
+
+.highlight-link a {
+
+    color: #999999;
+}
+
+.subtitle {
+    clear:both;
+    margin-top: 2px;
+    padding: 30px;
+    padding-top: 25px;
+    font-size: 1.4em;
+    font-family: opens;
+    font-size: 19px;
+    color: #555555;
+    margin-bottom: 50px;
+    background-color:#f7f7f7; 
+
+    
+}
+
+
+.subtitle-text {
+    padding-bottom:1px;
+    margin-left:40px;
+    
+    /*border-bottom: thin dotted #ddd;*/
+
+}
+
+
+
+
+
+.sub-sub-titile {
+    font-family: beb;
+    font-size :2.2em;
+    margin-bottom: 20px;
+    margin-top:-10px;
+    color:#ddd;
+
+}
+
+.backlight {
+    padding : 8px;
+    color:#999;
+    background-color: #f7f7f7;
+}
+
+
+.post {
+    margin:6px;
+    padding-bottom: 1px;
+    margin-bottom: 40px;
+    border-bottom:thin dashed #ccc; 
+}
+
+
+
+
+
+.post-title, .post-title a {
+
+    font-family: hnew;
+    color: #000;
+    font-size : 1.8em;
+    font-weight: bold;
+}
+
+
+
+.post-title a:hover {
+    text-decoration: none;
+}
+
+
+
+.post-content {
+    margin-top: 5px;
+    font-size: 14px;
+    line-height: 27px;
+    font-family:opens;
+    
+}
+
+.post-content  h4 ,.post-content  h3 {
+    font-weight: normal;
+    color: #428bca;
+    margin-bottom:-1px;
+}
+
+.alist {
+
+    margin-top:-16px;
+    padding-bottom: 6px;
+    
+
+    border-bottom:thin solid #ddd; 
+
+}
+
+.alist a {
+    font-family : hnew;
+}
+
+.sidebar-section {
+    clear: both;
+    margin-bottom: 10px;
+}
+
+
+
+.categories {
+
+    padding-bottom: 5px;
+
+}
+
+
+.about {
+
+    padding:20px;
+}
+
+.hello
+{
+    font-family: opensbold;
+    color:#000;
+    line-height: 220px;
+    font-size: 200px;
+   
+}
+.char2:hover {
+    color:#87d14b;
+}
+.char3:hover{
+    color:#009ff7;
+}
+
+.char4:hover {
+    color:#ff007c;
+    
+}
+
+.char5:hover {
+    color:#87d14b;
+}
+.char6:hover{
+    color:#009ff7;
+}
+
+.intro{
+    padding : 25px;
+    text-align: center;
+    font-family: sans-serif;
+    margin:0px;
+    background-color: #000;
+    color: #fff;
+    font-size:2.3em;
+    
+}
+
+.intro1 {
+background-color: #000;
+}
+
+.intro2 {
+    background-color:#cf143c;
+    
+}
+
+.intro2 a {
+    color:#7ae44c;
+}
+
+.intro3 {
+    background-color:#009ff7;
+
+    
+}
+
+.intro4 {
+    color:#000;
+    background-color:#5ac713;
+
+}
+
+.skills li {
+    margin-left: 60px;
+}
+
+
+.skills span {
+    font-family: opens;
+    font-size: 1.7em;
+    color:#000;
+    margin-bottom:10px; 
+}
+
+.social2 {
+    background-color:#009ff7;
+    margin:0px;
+    margin-bottom: 0px;
+    padding:25px;
+
+}
+
+.bottom {
+    padding-bottom: -5px;
+}
+
+.social2 li,.social2 li a{
+background-color:#009ff7;
+margin-left: 50px;
+color:#fff;
+font-size: 1.5em;
+text-decoration: none;
+}
+
+
+.intro5{
+    color: #000;
+    background-color: #fff;
+    text-align: none;
+}
+
+.intro6{
+    color: #000;
+    background-color: #fff055;
+    font-size: 1.9em;
+}
+
+.rotate {
+    margin: 0px;
+}
+
+.marker {
+    font-family:Marker felt;
+    font-size:1.5em;
+  
+}
+
+.big-font {
+    font-size: 1.9em;
+}
+
+.small {
+    font-size:0.9em;
+}
+
+.beb {
+    font-family: beb;
+    letter-spacing: 3px;
+}
+
+.quick {
+    font-family: quick;
+}
+
+.opens {
+    font-family: opens;
+}
+
+.fran {
+    font-family: fran;
+}
+
+.hnew {
+    font-family: hnew;
+}
+
+.hneubold {
+    font-family: hneubold;
+}
+
+.relative {
+    position: relative;
+}
+
+.mank{
+    font-family: mank;
+}
+
+.cd {
+    font-family: cd;
+}
+
+.big-big-font {
+    font-size:2.3em;
+}
+
+.extra-padding {
+    padding : 30px;
+}
+
+
+
+.polaroid {
+    margin-top: 10px;
+}
+
+.polaroid img {
+    width:320px; 
+    height: auto;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.project-intro {
+    font-size: 1.2em;
+}
+
+
+.img-container {
+     background: #fff; 
+     display: inline; 
+     float: left; 
+     width: auto; 
+     padding: 10px 10px 15px; 
+     text-align: center; 
+     font-family:hnew; 
+     color: #333; 
+     font-size: 18px;
+    -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.25);
+    -moz-box-shadow: 0 3px 6px rgba(0,0,0,.25);
+    -webkit-transform: rotate(-3deg); 
+    -webkit-transition: -webkit-transform .15s linear;
+    -moz-transform: rotate(-3deg); 
+    margin-bottom: 30px;
+    margin-top:-10px;
+   
+}
+
+.img-container:after {
+    content: attr(title); 
+}
+
+.img-container:hover {
+    -webkit-transform: scale(1.15);
+    -moz-transform: scale(1.15);
+    -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.5);
+    -moz-box-shadow: 0 3px 6px rgba(0,0,0,.5);
+    position: relative;
+    z-index: 5;
+}
+
+.about-text-title {
+    text-align: center;
+    font-family: hnew;
+    font-size:1.6em;
+    clear:both;
+    margin-top: 10px;
+    text-align: center;
+    color:#428bca;
+    margin-top:-5px;
+    
+}
+
+
+
+.signature
+{
+    padding-top: 9px;
+    font-size: 1.4em;
+   
+    font-family:sans-serif;
+}
+.signature a  , .signature a:hover{
+    text-decoration: none;
+    color:#949494;
+}
+
+
+
+.social-icon , .social-icon  a
+{
+    
+    margin-top:-30px;
+    padding:0px;
+    color:#999999;
+
+
+}
+
+.social-icon  a:hover {
+
+    color: #4189c8;
+    text-decoration: none;
+}
+
+.contact-title {
+    
+    color:#fff;
+    font-size:4.1em;
+}
+.contact-list {
+   
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top:15px;
+    font-family:hnew;
+}
+
+.contact-list li {
+    margin: 20px;
+   
+}
+
+.contact-container {
+   
+    padding:40px;
+    font-size:3.2em; 
+    color:#bbb; 
+    
+}
+
+.contact-desc {
+    font-size:1.9em;
+    padding-top:10px;
+    margin-top:10px;
+
+}
+
+.sizex {
+    font-size:1.3em;
+}
+
+/* Set the fixed height of the footer here */
+#push,
+#footer {
+  height: 60px;
+}
+#footer {
+    margin-top:10px;
+    background-color: #f7f7f7;
+    padding-top: 9px;
+}
+
+#footer p
+{
+    padding-top: 12px;
+}
+
+
+
+
+/* ******************************* 
+
+        project page
+    
+
+ *******************************  */
+
+.project {
+    margin:10px;
+    padding: 15px;
+    font-size:1.3em;
+}
+
+.project header span {
+    margin-bottom: 10px;
+    font-size:1.4em;
+    border-bottom: thin dotted #ccc;
+}
+.project-content {
+    margin-top:15px;
+    font-size:0.9em;
+    color:#999;
+    text-align: justify;
+    text-justify: newspaper;
+}
+
+

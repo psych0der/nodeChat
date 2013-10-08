@@ -1,0 +1,147 @@
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by it's height */
+    margin: 0 auto -30 0;
+}
+
+
+.full-height{
+	height: 100%;
+}
+
+.sidebar {
+	padding: 20px;
+	padding-left:30px;
+}
+
+.sidebar , .sidebar a {
+
+	font-size: 1.2em;
+} 
+
+.nick {
+	font-size: 1.2em;
+	padding-top:20px;
+}
+
+.title {
+	padding-top:1.2em;
+	font-size: 2.5em;
+
+}
+.underline {
+	border-bottom: thin solid #ddd;
+}
+
+.pull-down{
+	margin-top:15px;
+}
+
+.users-list , .chats{
+	height: 50%;
+	padding:10px;
+	border:thin dashed #ddd;
+	overflow-y: auto;
+}
+
+.user-list-title {
+	font-size: 1.4em;
+	font-family: sans-serif;
+}
+
+.user {
+	font-size : 1.5em;
+	font-style: italic;
+	text-transform: capitalize;
+}
+
+.badge {
+	background-color: #d9534e;
+}
+
+.thread-title {
+	font-size:3.1em;
+	margin-top:10px;
+	letter-spacing: 4px; 
+
+}
+
+.threads {
+
+	margin:10px;
+	margin-top:5px;
+	height:70%;
+	overflow: auto;
+	/*border: thin solid #ccc;*/
+}
+
+.threads li {
+	height:60px; 
+	border: thin solid #aaa;
+	padding:10px;
+	margin-bottom: 5px; 
+	width:300px;
+}
+
+.threads li a , .threads li{
+	color: #229cec;
+	font-size:2.4em;
+	font-family: sans-serif;
+	text-decoration: none;
+}
+
+.threads li a:hover {
+
+	text-decoration: none;
+}
+
+.home{
+	margin-top:20px;
+}
+
+
+.pull-up {
+	margin-top:-30px;
+}
+
+.chats {
+	height:60%;
+}
+
+.xsmall {
+	font-size:0.8em;
+	margin-top:10px;
+}
+
+.chats li {
+	width : 300px;
+	height:30px;
+	border-radius : 25px;
+	padding:5px;
+	background-color:#c64e47;
+	margin-bottom:7px;
+	color:#fff;
+	padding-left:10px;
+	font-size:1.1em;
+	clear:both;
+
+}
+
+#me {
+	color:#fff;
+	background-color:#21a9e6;
+	float:right;
+}
+
+
+
+#footer {
+  height: 30px;
+}
+
+#footer p
+{
+    padding-top: 12px;
+}

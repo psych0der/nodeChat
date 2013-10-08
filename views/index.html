@@ -1,0 +1,58 @@
+{{> header}}
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/multi-chat.js"></script>
+
+<div class="row main">
+  
+  <div class="col-xs-6 col-sm-6 col-md-2 sidebar full-height">
+
+  <a href="/messages">Messages <span id="notification" class="badge">42</span></a>
+  	
+
+
+  </div>
+
+<div class="col-xs-12 col-sm-6 col-md-10">
+  	
+<div class="container">
+
+
+<div class="row">
+<div class="col-md-8">
+
+<p class="lead title"><span class="">nodeChat</span></p>
+
+</div>
+
+<div class="col-xs-6 col-sm-6 col-md-4 nick">
+<span class="pull-right">welcome <span class="text-primary"><i>{{nick}}</i></span>
+<br>
+<a href="/logout"><button id="logout" type="submit" class="btn btn-danger">Log out</button></a>
+</span>
+</div>  	
+</div>
+
+<div class="col-md-10">
+<div class="online-users">
+<p class="user-list-title"> Online users </p>
+
+<ul id="users" class="list-unstyled users-list">
+
+</ul>
+<input type="text" class="chat form-control" id="chat" placeholder="enter you text">
+</div>
+
+</div>
+
+</div>
+
+
+
+
+  </div>
+  
+</div>
+
+
+{{>footer}}
