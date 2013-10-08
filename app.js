@@ -128,7 +128,7 @@ io.sockets.on('connection', function (socket) {
 
 	socket.on('send to all' , function(packet){
 
-		console.log(packet.message);
+		//console.log(packet.message);
 		var from = socket.handshake.session.nick;
 		for(to in packet.to)
 		{
@@ -144,6 +144,21 @@ io.sockets.on('connection', function (socket) {
 
 
 	});
+
+	socket.on('chat message',function(packet){
+
+		var from = socket.handshake.session.nick;
+		db.chats.save({from:from, to :packet.to, message: packet.message ,date: Date.now() , seen : false});
+			if(users[packet.to]!=undefined)
+			{
+
+				io.sockets.socket(users[packet.to]).emit('chat message',{from : from , message : packet.message ,date: Date.now()})
+
+			}
+
+
+	});
+
 	socket.on('fetch history', function(){
 
 		
@@ -154,24 +169,20 @@ io.sockets.on('connection', function (socket) {
 
 			//console.log('results '+JSON.stringify(docs));
 
-		});/*.forEach(function(err,doc){
-
-			if(!doc)
-			{
-				return;
-			}
-
-			console.log(history.push(doc));
-			//console.log(doc);
-			return history;
-
 		});
-	*/
 		//console.log('history : '+history);
 		//console.log('results '+JSON.stringify(results));
 		//socket.emit('history', {history:history});
 
 	});
+
+	socket.on('seen',function(from){
+
+		var nick = socket.handshake.session.nick;
+
+		db.chats.update({to:nick,from:from}, {$set:{seen:true}}, {multi:true}, function() {});
+
+});
 
 	socket.on('disconnect',function(){
 		console.log('disconnected');

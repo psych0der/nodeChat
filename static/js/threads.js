@@ -3,6 +3,7 @@ var socket = io.connect(window.location.origin,{
  'sync disconnect on unload': true
 });
 
+socket.emit('addUser','');
 
 socket.on('message', function(packet)
 {

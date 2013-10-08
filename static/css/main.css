@@ -31,7 +31,7 @@
 	font-size: 2.5em;
 }
 
-.users-list {
+.users-list , .chats{
 	height: 50%;
 	padding:10px;
 	border:thin dashed #ddd;
@@ -91,6 +91,40 @@
 .home{
 	margin-top:20px;
 }
+
+
+.pull-up {
+	margin-top:-30px;
+}
+
+.chats {
+	height:60%;
+}
+
+.xsmall {
+	font-size:0.8em;
+}
+
+.chats li {
+	width : 300px;
+	height:30px;
+	border-radius : 25px;
+	padding:5px;
+	background-color:#ccc;
+	margin-bottom:7px;
+	padding-left:10px;
+	font-size:1.1em;
+	clear:both;
+
+}
+
+#me {
+	color:#fff;
+	background-color:#21e649;
+	float:right;
+}
+
+
 
 #footer {
   height: 30px;

@@ -74,6 +74,13 @@ exports.loginForm = function(req,res) {
 
 exports.messages = function(req,res) {
 
+if(!req.session.loggedIn)
+	{
+		res.redirect('/login');
+	}
+
+else
+{
 var nick = req.session.nick;
 var threads; 
 
@@ -108,25 +115,58 @@ if(names[obj.from]== undefined)
 
 });
 
-
+}
 }
 
 
 exports.threads = function(req,res) {
 
+if(!req.session.loggedIn)
+	{
+		res.redirect('/login');
+	}
+
+else {
 nick = req.session.nick;
 from = req.params.from;
 
 db.chats.find({$or :[{from : from , to : nick},{from: nick , to: from}]}).sort({time:-1}).limit(10,function(err,docs){
 
-console.log(docs);
+docs.forEach(function(doc){
+
+var date = new Date(doc.date);
+doc.date = date.getHours()+':'+date.getMinutes();
+
+if(doc.from == nick)
+{
+	doc.id='me';
+	doc.from = 'me';
+}
+
+else {
+	doc.id='you';
+}
+
+});
+
+res.render('threads', 
+		{
+			'nick' : nick,
+			'buddy' : from,
+			'threads' : docs,
+			partials : 
+  			{
+  				header : 'header',
+  				footer : 'footer'
+  			} 
+		
+		});
 
 
 
 });
 
-
-
+}
 }
 
 

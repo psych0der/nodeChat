@@ -1,0 +1,45 @@
+{{>header}}
+<script>
+var to = '{{buddy}}';
+</script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/chat.js"></script>
+
+<div class="col-xs-12 col-sm-6 col-md-10">
+  	
+<div class="container">
+<div class="row">
+<div class="col-md-8">
+
+<div class="pull-left">
+<a href="/"><button type="submit" class="btn btn-success home">Home</button></a>
+</div>
+</div>
+</div>
+
+<div class="col-md-10 col-md-offset-2 pull-up">
+<p class="lead title text-danger text-center"> Me - {{buddy}}</p>
+<br>
+
+<div class="online-users">
+
+<ul id="chat-box" class="list-unstyled users-list chats">
+{{#threads}}
+<li id="{{id}}"> {{from}} : {{message}} <span class="pull-right xsmall"><small><i>{{date}}</i></small></span></li>
+
+{{/threads}}
+</ul>
+<input type="text" class="chat form-control" id="chat" placeholder="enter you text">
+</div>
+
+</div>
+
+</div>
+
+
+
+
+ </div>
+  
+
+{{>footer}}

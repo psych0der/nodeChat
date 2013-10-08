@@ -123,7 +123,7 @@ $(document).on("change", ".user-add", function(event) {
 $(document).keypress(function(e) {
     if(e.which == 13) {
       	
-      	if(size(selected) > 0)
+      	if(size(selected) > 0 && $('#chat').val() != '')
         	socket.emit('send to all',{to : selected , message : $('#chat').val()});
         else
         	alert('lol');
