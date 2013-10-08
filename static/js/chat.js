@@ -1,10 +1,7 @@
 function autoScroll()
 {
-
-$("#chat-box").animate({
-        scrollTop: $("#messages").scrollHeight
-    }, 300);
-
+var objDiv = document.getElementById("chat-box");
+objDiv.scrollTop = objDiv.scrollHeight;
 }
 
 var socket = io.connect(window.location.origin,{

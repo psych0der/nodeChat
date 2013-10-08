@@ -103,6 +103,7 @@
 
 .xsmall {
 	font-size:0.8em;
+	margin-top:10px;
 }
 
 .chats li {
@@ -120,7 +121,7 @@
 
 #me {
 	color:#fff;
-	background-color:#21e649;
+	background-color:#21a9e6;
 	float:right;
 }
 
