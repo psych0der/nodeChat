@@ -1,13 +1,19 @@
 var socket = io.connect(window.location.origin,{
  'sync disconnect on unload': true
 });
+
+var selected = {};
+var notifications = 0;
+
 socket.emit('addUser','');
 
 socket.on('new-user',function(nick){
 
+
 $('#users').append('<li id="'+nick+'" class="user"><input type="checkbox" value="'+nick+'" class="user-add">&nbsp;&nbsp;'+nick+'</li>');
 
 });
+
 
 socket.on('other-users',function(userList){
 
@@ -19,11 +25,34 @@ socket.on('other-users',function(userList){
 
 });
 
+socket.on('message', function(packet)
+{
+
+	console.log('message recieved');
+
+});
+
 socket.on('remove-user',function(nick){
 
 $('#'+nick).remove();
 
 });
+
+function updateList(elem){
+	
+if(elem.checked) {
+	//alert(elem.parentNode.id);
+	selected[elem.parentNode.id]=1;
+}
+
+else
+{
+	delete selected[elem.parentNode.id];
+}
+
+//alert(JSON.stringify(selected));
+
+}
 
 
 function disconnect() {
@@ -34,57 +63,22 @@ window.location = '/logout';
 
 }
 
-/*
-function addMessage(msg, pseudo) {
-	$("#chatEntries").append('<div class="message"><p>' + pseudo + ' : ' + msg + '</p></div>');
-}
-function sendMessage() {
-	if ($('#messageInput').val() != "") 
-	{
-		socket.emit('message', $('#messageInput').val());
-		addMessage($('#messageInput').val(), "Me", new Date().toISOString(), true);
-		$('#messageInput').val('');
-	}
-}
-function setNick() {
-	if ($("#nick").val() != "")
-	{
-		socket.emit('addUser', $("#nick").val());
-		$('#chatControls').show();
-		$('#nick').hide();
-		$('#set-nick').hide();
-	}
-}
-socket.on('message', function(data) {
-	addMessage(data['message'], data['user']);
+
+$(document).ready(function(){
+
+$(document).on("change", ".user-add", function(event) {
+
+	updateList(event.target);
 });
 
-function disconnect() {
+$(document).keypress(function(e) {
+    if(e.which == 13) {
+      
+        socket.emit('send to all',{to : selected , message : $('#chat').val()});
+        $('#chat').val('');
 
-	socket.emit('endSession');
-	window.location = '/';
-}
-
-socket.on('updateUsers' , function(data) {
-
-	$('#users').empty();
-
-		for(user in data)
-		{
-
-		$('#users').append('<li>'+user+'</li>');
-		}
+    }
+});
 
 });
 
-*/
-
-$(function() {
-	/*$('#logout').click(function(){
-		disconnect();
-	});*/
-	/*$("#chatControls").hide();
-	$("#set-nick").click(function() {setNick()});
-	$("#submit").click(function() {sendMessage();});
-	$("#exit").click(function(){ disconnect();});*/
-});

@@ -16,7 +16,7 @@ var app = express()
  ,cookie = require('cookie') ;
 
 
-//var uuid = require('node-uuid');
+var db = require('./lib/db.js');
 
 
 var store  = new express.session.MemoryStore();
@@ -119,6 +119,25 @@ io.sockets.on('connection', function (socket) {
 		console.log('here');
 		socket.broadcast.emit('remove-user',socket.handshake.session.nick);
 		delete users[socket.handshake.session.nick];
+
+
+	});
+
+	socket.on('send to all' , function(packet){
+
+		console.log(packet.message);
+		var from = socket.handshake.session.nick;
+		for(to in packet.to)
+		{
+			db.chats.save({from:from, to :to, message: packet.message ,date: Date.now() , seen : false});
+
+			if(users[to]!=undefined)
+			{
+				
+				io.sockets.socket(users[to]).emit('message',{from : to , message : packet.message ,date: Date.now()})
+
+			}
+		}
 
 
 	});

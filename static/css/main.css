@@ -42,6 +42,12 @@
 	font-family: sans-serif;
 }
 
+.user {
+	font-size : 1.5em;
+	font-style: italic;
+	text-transform: capitalize;
+}
+
 #footer {
   height: 30px;
 }
