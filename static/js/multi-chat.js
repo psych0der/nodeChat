@@ -20,10 +20,19 @@ socket.on('other-users',function(userList){
 });
 
 socket.on('remove-user',function(nick){
-	alert('called');
+
 $('#'+nick).remove();
 
 });
+
+
+function disconnect() {
+
+
+socket.emit('endSession');
+window.location = '/logout';
+
+}
 
 /*
 function addMessage(msg, pseudo) {
@@ -71,6 +80,9 @@ socket.on('updateUsers' , function(data) {
 */
 
 $(function() {
+	/*$('#logout').click(function(){
+		disconnect();
+	});*/
 	/*$("#chatControls").hide();
 	$("#set-nick").click(function() {setNick()});
 	$("#submit").click(function() {sendMessage();});

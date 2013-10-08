@@ -100,7 +100,11 @@ io.sockets.on('connection', function (socket) {
 	//console.log(store);
 	
 		socket.on('addUser', function (name) {
-			socket.emit('other-users',users);
+
+			var users_copy = users;
+			delete users_copy[socket.handshake.session.nick];
+			socket.emit('other-users',users_copy);
+			delete users_copy;
 
 		if( typeof users[socket.handshake.session.nick] == 'undefined')
 		{
@@ -109,8 +113,26 @@ io.sockets.on('connection', function (socket) {
 		}
 		
 	});
-	
+
+
+	socket.on('endSession', function(){
+		console.log('here');
+		socket.broadcast.emit('remove-user',socket.handshake.session.nick);
+		delete users[socket.handshake.session.nick];
+
+
+	});
+
+	socket.on('disconnect',function(){
+		console.log('disconnected');
+		socket.broadcast.emit('remove-user',socket.handshake.session.nick);
+		delete users[socket.handshake.session.nick];
+
+	});
+
+	/*
 	socket.on('message', function (message) {
+
 		socket.get('username', function (error, name) {
 			var data = { 'message' : message, 'user' :name};
 			socket.broadcast.emit('message', data);
@@ -118,7 +140,7 @@ io.sockets.on('connection', function (socket) {
 		})
 	});
 
-	socket.on('endSession' , function(){
+	socket.on('endSession1' , function(){
 		
 		socket.get('username',function(err,name){
 
@@ -126,16 +148,9 @@ io.sockets.on('connection', function (socket) {
 			socket.broadcast.emit('updateUsers',users);
 		});
 
-
-	socket.on('disconnect',function(err,name){
-		console.log('disconnected');
-		socket.broadcast.emit('remove-user',socket.handshake.session.nick);
-		delete users[socket.handshake.session.nick];
-
-	});
+	*/
 		
 
-	});
 
 
 });
