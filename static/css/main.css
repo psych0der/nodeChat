@@ -29,6 +29,14 @@
 .title {
 	padding-top:1.2em;
 	font-size: 2.5em;
+
+}
+.underline {
+	border-bottom: thin solid #ddd;
+}
+
+.pull-down{
+	margin-top:15px;
 }
 
 .users-list , .chats{
