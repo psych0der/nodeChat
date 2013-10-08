@@ -35,6 +35,7 @@
 	height: 50%;
 	padding:10px;
 	border:thin dashed #ddd;
+	overflow-y: auto;
 }
 
 .user-list-title {
@@ -50,6 +51,45 @@
 
 .badge {
 	background-color: #d9534e;
+}
+
+.thread-title {
+	font-size:3.1em;
+	margin-top:10px;
+	letter-spacing: 4px; 
+
+}
+
+.threads {
+
+	margin:10px;
+	margin-top:5px;
+	height:70%;
+	overflow: auto;
+	border: thin solid #ccc;
+}
+
+.threads li {
+	height:60px; 
+	border-bottom: thin solid #aaa;
+	padding:10px;
+	margin-bottom: 1px: 
+}
+
+.threads li a , .threads li{
+	color: #229cec;
+	font-size:2.4em;
+	font-family: sans-serif;
+	text-decoration: none;
+}
+
+.threads li a:hover {
+
+	text-decoration: none;
+}
+
+.home{
+	margin-top:20px;
 }
 
 #footer {

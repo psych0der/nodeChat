@@ -60,6 +60,7 @@ app.get('/', routes.index);
 app.get('/register',routes.registerForm);
 app.get('/login',routes.loginForm);
 app.get('/logout',routes.logout);
+app.get('/messages',routes.messages);
 
 app.post('/register',routes.register);
 app.post('/login',routes.login);
@@ -177,35 +178,8 @@ io.sockets.on('connection', function (socket) {
 
 	});
 
-	/*
-	socket.on('message', function (message) {
-
-		socket.get('username', function (error, name) {
-			var data = { 'message' : message, 'user' :name};
-			socket.broadcast.emit('message', data);
-			console.log("user " + name + " send this : " + message);
-		})
-	});
-
-	socket.on('endSession1' , function(){
-		
-		socket.get('username',function(err,name){
-
-			delete users[name];
-			socket.broadcast.emit('updateUsers',users);
-		});
-
-	*/
-		
-
-
-
+	
 });
-
-
-
-
-
 
 
 server.listen(app.get('port'), function(){

@@ -72,6 +72,46 @@ exports.loginForm = function(req,res) {
 		});
 }
 
+exports.messages = function(req,res) {
+
+var nick = req.session.nick;
+var threads; 
+
+db.chats.find({to : nick},{from:1},function(err,docs){
+
+var names = {}
+var threads = [];
+
+docs.forEach(function(obj){
+
+if(names[obj.from]== undefined)
+{
+	threads.push(obj);
+	names[obj.from] = 1;
+}
+
+});
+
+	res.render('messages', 
+		{
+			'threads' : threads,
+			partials : 
+  			{
+  				header : 'header',
+  				footer : 'footer'
+  			} 
+		
+		});
+
+
+
+
+});
+
+
+}
+
+
 
 exports.register = function(req,res) {
 
