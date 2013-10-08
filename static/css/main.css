@@ -48,6 +48,10 @@
 	text-transform: capitalize;
 }
 
+.badge {
+	background-color: #d9534e;
+}
+
 #footer {
   height: 30px;
 }
