@@ -138,6 +138,7 @@ io.sockets.on('connection', function (socket) {
 			{
 
 				io.sockets.socket(users[to]).emit('message',{from : from , message : packet.message ,date: Date.now()})
+				io.sockets.socket(users[to]).emit('chat message',{from : from , message : packet.message ,date: Date.now()})
 
 			}
 		}

@@ -13,12 +13,14 @@ socket.emit('seen',to);
 
 socket.on('chat message',function(packet){
 
+if(packet.from == to)
+{
 var dt = new Date(packet.date);
 dt = dt.getHours()+':'+dt.getMinutes();
 $('#chat-box').append('<li> '+packet.from+' : '+packet.message+' <span class="pull-right xsmall"><small><i>'+dt+'</i></small></span></li>');
 socket.emit('seen',to);
 autoScroll();
-
+}
 });
 
 
