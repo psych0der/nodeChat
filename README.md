@@ -20,4 +20,4 @@ nodeChat uses socket.io for harnessing power of html 5 websockets to provide rea
 
 ________________
 
-####App demo : 
+####App demo : http://serene-escarpment-1861.herokuapp.com
