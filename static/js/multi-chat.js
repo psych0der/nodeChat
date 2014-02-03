@@ -8,6 +8,12 @@ function size(obj) {
     return size;
 };
 
+function checkOnlineUsers() {
+
+if ($('#users').children().length == 0) {
+    $('#users').append('<li id="nouser" class="text-danger lead"><center> There are no online users </center></li>');
+}
+};
 
 var socket = io.connect(window.location.origin,{
  'sync disconnect on unload': true
@@ -22,6 +28,11 @@ socket.emit('fetch history');
 
 socket.on('new-user',function(nick){
 
+if($('#nouser').length)
+{  
+
+	$('#nouser').remove();
+}
 
 $('#users').append('<li id="'+nick+'" class="user"><input type="checkbox" value="'+nick+'" class="user-add">&nbsp;&nbsp;'+nick+'</li>');
 
@@ -33,6 +44,16 @@ socket.on('other-users',function(userList){
 	for(nick in userList)
 	{
 		$('#users').append('<li id="'+nick+'" class="user"><input type="checkbox" value="'+nick+'" class="user-add">&nbsp;&nbsp;'+nick+'</li>');
+
+	}
+
+	if (Object.keys(userList).length > 0) {
+
+    	if($('#nouser').length)
+		{  
+
+			$('#nouser').remove();
+		}
 
 	}
 
@@ -81,6 +102,7 @@ socket.on('remove-user',function(nick){
 
 $('#'+nick).remove();
 
+checkOnlineUsers();
 });
 
 function updateList(elem){
@@ -134,3 +156,10 @@ $(document).keypress(function(e) {
 
 });
 
+
+$(document).ready(function(){
+
+checkOnlineUsers();
+
+
+});

@@ -17,7 +17,8 @@ exports.index = function(req, res){
 	}
 
 else {
-
+    
+    var users= [];
 	res.render('index', 
 		{
 
